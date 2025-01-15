@@ -3,7 +3,7 @@
 
 ## 💾 Installation
 
-fisher install ltaupiac/brewinfo
+fisher install ltaupiac/binf
 
 Demo :
 
