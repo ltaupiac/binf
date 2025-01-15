@@ -1,5 +1,5 @@
 # binf
-## Dispay the description, homepage link and version of a brew formula
+## Dispay the description, homepage URL and version of a brew formula
 
 ## 💾 Installation
 
@@ -12,7 +12,7 @@ Demo :
 ### Usage
 Usage: binf [options] <formula>
 
-Dispay the description, homepage link and version of a brew formula
+Dispay the description, homepage URL and version of a brew formula
 
 Options:
 
