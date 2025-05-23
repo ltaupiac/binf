@@ -1,6 +1,6 @@
 function binf
     # Function: binf
-    set -l binf_version "Version 1.0.0"
+    set -l binf_version "Version 1.1.0"
     # Define required commands
     set -l binf_required_cmds jq
     # Author Laurent Taupiac
@@ -39,6 +39,8 @@ function binf
         echo $binf_version
         echo "Purpose: display the description, homepage URL, and the version of a brew formula."
         echo
+        echo "If no argument is specified, uses the clipboard content."
+        echo
         echo "Options:"
         echo "  -t, --trace   : Verbose mode"
         echo "  -d, --debug   : Show debugging information"
@@ -54,14 +56,23 @@ function binf
     end
 
     # After argparse, $argv contains only non-option arguments
-    if test (count $argv) -ne 1
-        echo "Error: no formula specified."
+    if test (count $argv) -eq 0
+        set commande (pbpaste)
+        if test -z "$commande"
+            echo "Error: no formula specified and the clipboard is empty or invalid."
+            echo "Use binf --help for more information."
+            set -e fish_trace fish_log
+            return 1
+        end
+        echo -e (set_color blue)"formula    "(set_color normal)(set_color white)": "(set_color green)"$commande"(set_color normal)
+    else if test (count $argv) -eq 1
+        set commande $argv[1]
+    else
+        echo "Error: too many arguments specified."
         echo "Use binf --help for more information."
         set -e fish_trace fish_log
         return 1
     end
-    # The first non-option argument is the formula name
-    set -l commande $argv[1]
 
     # Check and install required commands
     check_and_install_cmds $binf_required_cmds

@@ -14,6 +14,10 @@ Usage: binf [options] <formula>
 
 Dispay the description, homepage URL and version of a brew formula
 
+## Clipboard Support
+
+If no argument is specified, `binf` uses the content of the clipboard as the formula name.
+
 Options:
 
 -t, --trace : Verbose mode
@@ -29,6 +33,13 @@ Options:
 **homepage**  : The homepage of project
 **version**   : Last version available
 **installed** : Current version installed on the device, if available
+
+**Example:**
+
+```shell
+echo "fish" | pbcopy
+binf
+````
 
 ### Abbr
 
